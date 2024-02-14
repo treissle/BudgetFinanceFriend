@@ -1,6 +1,8 @@
 # Budget Finance Friend
 
+Delete the DO_NOT_USE_app.py file
 Run app.py to start web app
+
 
 This app seeks to improve the financial lives of post-grad college students.
 
