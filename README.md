@@ -2,7 +2,7 @@
 
 Run app.py to start web app
 
-This app seeks to improve the financial lives of college students.
+This app seeks to improve the financial lives of post-grad college students.
 
 System Architecture:
 | Front-end        | Back-end    | Database |
