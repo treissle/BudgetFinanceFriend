@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>401k Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='401kstyle.css') }}" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="dashboard">
+        <div class="column left">
+          <h1>401k Calculator</h1>
+
+          <div class="form-label">
+            <label for="currentAge">Current Age:</label>
+            <input
+              type="text"
+              id="currentAge"
+              pattern="[0-9]*"
+              inputmode="numeric"
+              placeholder="e.g. 25"
+            />
+            <br />
+            <label for="currentSalary">Current Salary:</label>
+            <input
+              type="text"
+              id="currentSalary"
+              pattern="[0-9]*"
+              inputmode="numeric"
+              placeholder="e.g. 75000"
+            />
+            <br />
+            <label for="currentBalance">Current 401k Balance:</label>
+            <input
+              type="text"
+              id="currentBalance"
+              pattern="[0-9]*"
+              inputmode="numeric"
+              placeholder="e.g. 35000"
+            />
+            <br />
+            <label for="contributionPercentage"
+              >Contribution (% of Salary):</label
+            >
+            <input
+              type="text"
+              id="contributionPercentage"
+              pattern="[0-9]*"
+              inputmode="numeric"
+              placeholder="e.g. 10"
+            />
+            <br />
+            <label for="employerMatch">Employer Match (%):</label>
+            <input
+              type="text"
+              id="employerMatch"
+              pattern="[0-9]*"
+              inputmode="numeric"
+              placeholder="e.g. 50"
+            />
+            <br />
+            <label for="employerMatchLimit">Employer Match Limit (%):</label>
+            <input
+              type="text"
+              id="employerMatchLimit"
+              pattern="[0-9]*"
+              inputmode="numeric"
+              placeholder="e.g. 3"
+            />
+          </div>
+
+          <div class="calculator"></div>
+          <label for="retirementAge">Retirement Age:</label>
+          <input type="text" id="retirementAge" placeholder="e.g. 65" />
+          <br />
+          <button id="calculate">Calculate</button>
+          <button class="clear">Clear</button>
+        </div>
+        <div class="container">
+          <div class="column left">
+            <div class="result"></div>
+          </div>
+          <div class="column right">
+            <div class="chart-container">
+              <canvas id="lineChart" width="200" height="200"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', filename='401k.js') }}"></script>
+  </body>
+</html>
