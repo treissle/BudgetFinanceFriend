@@ -63,6 +63,10 @@ body, html {
     background-color: #5a6268;
   }
   
+  #logout {
+    float: right;
+  }
+  
   .column.right {
     display: flex;
     flex-direction: column;
