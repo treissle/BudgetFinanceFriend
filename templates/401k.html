@@ -76,9 +76,11 @@
           <input type="text" id="retirementAge" placeholder="e.g. 65" />
           <br />
           <button id="calculate">Calculate</button>
+          <button id="save">Save</button>
           <button class="clear">Clear</button>
         </div>
         <div class="container">
+          <button id="logout" onclick="logout()">Log Out</button>
           <div class="column left">
             <div class="result"></div>
           </div>
@@ -91,6 +93,28 @@
       </div>
     </div>
 
+    <script> var username = "{{ username }}"; </script>
+    <script>
+      function logout() {
+        const isConfirmed = confirm('Are you sure you want to log out?')
+
+        if(isConfirmed){
+          fetch('/logout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(() => {
+                // Redirect to the login page
+                window.location.href = '/login';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+      }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="{{ url_for('static', filename='401k.js') }}"></script>
   </body>
