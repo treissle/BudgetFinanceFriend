@@ -30,7 +30,7 @@ def login():
 			session['id'] = account['id']
 			session['username'] = account['username']
 			msg = 'Logged in successfully !'
-			return render_template('401k.html', msg = msg)
+			return render_template('401k.html', msg = msg, username=username)
 		else:
 			msg = 'Incorrect username and/or password, please try again'
 	return render_template('login.html', msg = msg)
@@ -57,7 +57,7 @@ def register():
 			cursor.execute('INSERT INTO 401K VALUES (NULL, % s, % s)', (username, password, ))
 			mysql.connection.commit()
 			msg = 'You have successfully registered'
-			return render_template('login.html', msg = msg)
+			return render_template('login.html', msg = msg, username=username)
 	return render_template('register.html', msg = msg)
 
 if __name__ == '__main__':
