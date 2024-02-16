@@ -6,14 +6,42 @@ document.addEventListener('DOMContentLoaded', () => {
         input.value = input.value.replace(/\D/g, '');
       });
     });
-  
+
+    const logoutButton = document.getElementById('logout');
+    const saveButton = document.getElementById('save');
     const calculateButton = document.getElementById('calculate');
     const clearButton = document.querySelector('.clear');
     const resultContainer = document.querySelector('.result');
     const ctx = document.getElementById('lineChart').getContext('2d');
+    
   
     let lineChart; // Declare lineChart outside the click event
+
+// Save Button
+    saveButton.addEventListener('click', () => {
+      console.log('Save button clicked');
+      console.log(username)
+
+      const user_inputs = {
+        currentAge: document.getElementById('currentAge').value,
+        currentSalary: document.getElementById('currentSalary').value,
+        currentBalance: document.getElementById('currentBalance').value,
+        contributionPercentage: document.getElementById('contributionPercentage').value,
+        employerMatch: document.getElementById('employerMatch').value,
+        employerMatchLimit: document.getElementById('employerMatchLimit').value,
+        retirementAge: document.getElementById('retirementAge').value
   
+      };
+      const user_data = { [username] : user_inputs}
+
+      console.log(user_data)
+      
+    })
+
+// Logout function
+
+
+// Chart
     function calculateChartData() {
       const currentAge = parseInt(document.getElementById('currentAge').value, 10);
       const currentSalary = parseFloat(document.getElementById('currentSalary').value);
@@ -49,6 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return { labels, data };
     }
   
+// Calculate Button
     calculateButton.addEventListener('click', () => {
       const { labels, data } = calculateChartData();
   
@@ -88,6 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   
+// Clear Button
     clearButton.addEventListener('click', () => {
       resultContainer.textContent = '';
       document.getElementById('currentAge').value = '0';
