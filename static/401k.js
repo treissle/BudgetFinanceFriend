@@ -36,6 +36,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
       console.log(user_data)
       
+      fetch('/save_user_inputs', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams(user_inputs).toString(),
+    })
+    .then(response => response.text())
+    .then(result => {
+        console.log(result);
+        
+        alert(result);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+
     })
 
 // Logout function
