@@ -13,6 +13,7 @@
         <div class="column left">
           <h1>401k Calculator</h1>
 
+          <form id="userInputForm" action="/save_user_inputs" method="POST"></form>
           <div class="form-label">
             <label for="currentAge">Current Age:</label>
             <input
@@ -74,6 +75,7 @@
           <div class="calculator"></div>
           <label for="retirementAge">Retirement Age:</label>
           <input type="text" id="retirementAge" placeholder="e.g. 65" />
+        </form>
           <br />
           <button id="calculate">Calculate</button>
           <button id="save">Save</button>
