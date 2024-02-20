@@ -35,6 +35,41 @@ def login():
 			msg = 'Incorrect username and/or password, please try again'
 	return render_template('login.html', msg = msg)
 
+@app.route('/save_user_inputs', methods=['POST'])
+def save_user_inputs():
+    if 'loggedin' in session:
+        username = session['username']
+        user_inputs = {
+            'currentAge': request.form['currentAge'],
+            'currentSalary': request.form['currentSalary'],
+            'currentBalance': request.form['currentBalance'],
+            'contributionPercentage': request.form['contributionPercentage'],
+            'employerMatch': request.form['employerMatch'],
+            'employerMatchLimit': request.form['employerMatchLimit'],
+            'retirementAge': request.form['retirementAge']
+        }
+
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute("""
+            UPDATE 401K
+            SET 
+                currentAge = %(currentAge)s,
+                currentSalary = %(currentSalary)s,
+                currentBalance = %(currentBalance)s,
+                contributionPercentage = %(contributionPercentage)s,
+                employerMatch = %(employerMatch)s,
+                employerMatchLimit = %(employerMatchLimit)s,
+                retirementAge = %(retirementAge)s
+            WHERE username = %(username)s
+        """, {'username': username, **user_inputs})
+
+        mysql.connection.commit()
+        cursor.close()
+
+        return 'User inputs saved successfully!'
+
+    return 'User not logged in!'
+	
 @app.route('/logout')
 def logout():
 	session.pop('loggedin', None)
@@ -54,7 +89,7 @@ def register():
 		if account:
 			msg = 'Account already exists !'
 		else:
-			cursor.execute('INSERT INTO 401K VALUES (NULL, % s, % s)', (username, password, ))
+			cursor.execute('INSERT INTO 401K VALUES (NULL, % s, % s, NULL, NULL, NULL, NULL, NULL, NULL, NULL)', (username, password, ))
 			mysql.connection.commit()
 			msg = 'You have successfully registered'
 			return render_template('login.html', msg = msg, username=username)
