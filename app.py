@@ -59,7 +59,8 @@ def save_user_inputs():
                 contributionPercentage = %(contributionPercentage)s,
                 employerMatch = %(employerMatch)s,
                 employerMatchLimit = %(employerMatchLimit)s,
-                retirementAge = %(retirementAge)s
+                retirementAge = %(retirementAge)s,
+		saved =1
             WHERE username = %(username)s
         """, {'username': username, **user_inputs})
 
