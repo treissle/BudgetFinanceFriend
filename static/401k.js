@@ -7,6 +7,18 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
+    document.getElementById('lowContribution').addEventListener('click', () => {
+      document.getElementById('contributionPercentage').value = 5;
+    });
+  
+    document.getElementById('mediumContribution').addEventListener('click', () => {
+      document.getElementById('contributionPercentage').value = 7.5;
+    });
+  
+    document.getElementById('highContribution').addEventListener('click', () => {
+      document.getElementById('contributionPercentage').value = 10;
+    });
+
     const logoutButton = document.getElementById('logout');
     const saveButton = document.getElementById('save');
     const calculateButton = document.getElementById('calculate');
