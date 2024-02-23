@@ -27,6 +27,7 @@
               pattern="[0-9]*"
               inputmode="numeric"
               placeholder="e.g. 25"
+              value="{{ user_data.get('currentAge', '') }}"
             />
             <br />
             <label for="currentSalary">Current Salary:</label>
@@ -36,6 +37,7 @@
               pattern="[0-9]*"
               inputmode="numeric"
               placeholder="e.g. 75000"
+              value="{{ user_data.get('currentSalary', '') }}"
             />
             <br />
             <label for="currentBalance">Current 401k Balance:</label>
@@ -45,6 +47,7 @@
               pattern="[0-9]*"
               inputmode="numeric"
               placeholder="e.g. 35000"
+              value="{{ user_data.get('currentBalance', '') }}"
             />
             <br />
             <label for="contributionPercentage"
@@ -56,6 +59,7 @@
               pattern="[0-9]*"
               inputmode="numeric"
               placeholder="e.g. 10"
+              value="{{ user_data.get('contributionPercentage', '') }}"
             />
             <br />
             <label for="employerMatch">Employer Match (%):</label>
@@ -65,6 +69,7 @@
               pattern="[0-9]*"
               inputmode="numeric"
               placeholder="e.g. 50"
+              value="{{ user_data.get('employerMatch', '') }}"
             />
             <br />
             <label for="employerMatchLimit">Employer Match Limit (%):</label>
@@ -74,12 +79,15 @@
               pattern="[0-9]*"
               inputmode="numeric"
               placeholder="e.g. 3"
+              value="{{ user_data.get('employerMatchLimit', '') }}"
             />
           </div>
 
           <div class="calculator"></div>
           <label for="retirementAge">Retirement Age:</label>
-          <input type="text" id="retirementAge" placeholder="e.g. 65" />
+          <input type="text" id="retirementAge" placeholder="e.g. 65" value="{{ user_data.get('retirementAge', '') }}"
+          />
+          
         </form>
           <br />
           <button id="calculate">Calculate</button>
@@ -113,7 +121,6 @@
                 },
             })
             .then(() => {
-                // Redirect to the login page
                 window.location.href = '/login';
             })
             .catch(error => {
@@ -124,5 +131,25 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="{{ url_for('static', filename='401k.js') }}"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          console.log('DOMContentLoaded event fired');
+  
+          const restoreSession = confirm("Would you like to restore your last session?");
+          console.log('User chose to restore session:', restoreSession);
+  
+          if (!restoreSession) {
+              console.log('Not restoring session. Clearing data...');
+              // Clear individual form fields
+              document.getElementById('currentAge').value = '';
+              document.getElementById('currentSalary').value = '';
+              document.getElementById('currentBalance').value = '';
+              document.getElementById('contributionPercentage').value = '';
+              document.getElementById('employerMatch').value = '';
+              document.getElementById('employerMatchLimit').value = '';
+              document.getElementById('retirementAge').value = '';
+          }
+      });
+  </script>
   </body>
 </html>
