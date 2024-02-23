@@ -135,7 +135,7 @@
       document.addEventListener('DOMContentLoaded', function() {
           console.log('DOMContentLoaded event fired');
   
-          const restoreSession = confirm("Would you like to restore your last session?");
+          const restoreSession = confirm("Would you like to restore your last session? \n*Click 'Cancel' if it is your first time*");
           console.log('User chose to restore session:', restoreSession);
   
           if (!restoreSession) {
