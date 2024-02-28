@@ -11,5 +11,5 @@ System Architecture:
 |--------------|-----------|------------|
 | HTML/CSS/JS | Python/Flask      | MySQL        |
 
-* Need to install python, flask, and mysql package
+* Need to install python, flask, and flask_mysqldb package
 * Helpful to install "open in browser" Visual Studio code extension to check UI
